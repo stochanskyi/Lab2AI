@@ -95,7 +95,7 @@ class MainFragment : BaseFragment(R.layout.fragment_main) {
         }
 
         viewModel.openGraphData.observe(viewLifecycleOwner) { data ->
-            // TODO
+            context?.let { ChartActivity.start(it, data) }
         }
 
         viewModel.clearLiveData.observe(viewLifecycleOwner) { result ->

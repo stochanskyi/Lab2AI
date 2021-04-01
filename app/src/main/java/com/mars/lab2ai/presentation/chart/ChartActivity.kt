@@ -35,6 +35,8 @@ class ChartActivity : AppCompatActivity() {
 
     private fun createChart(data: HashMap<Float, Float>) {
 
+        binding.anyChartView.setProgressBar(binding.progressBar)
+
         val cartesian: Cartesian = AnyChart.line()
 
         cartesian.animation(true)
@@ -48,9 +50,7 @@ class ChartActivity : AppCompatActivity() {
 
         cartesian.tooltip().positionMode(TooltipPositionMode.POINT)
 
-        cartesian.title("Trend of Sales of the Most Popular Products of ACME Corp.")
 //
-        cartesian.yAxis(0).title("Number of Bottles Sold (thousands)")
         cartesian.xAxis(0).labels().padding(5.0, 5.0, 5.0, 5.0)
 
         val seriesData: List<DataEntry> = data.map { ValueDataEntry(it.key, it.value) }
@@ -70,7 +70,6 @@ class ChartActivity : AppCompatActivity() {
             .anchor(Anchor.LEFT_CENTER)
             .offsetX(5.0)
             .offsetY(5.0)
-
 
         binding.anyChartView.setChart(cartesian)
     }
