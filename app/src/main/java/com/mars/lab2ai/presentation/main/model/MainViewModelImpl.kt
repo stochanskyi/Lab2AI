@@ -14,35 +14,35 @@ class MainViewModelImpl : MainViewModel() {
 
     override fun setU1(u1: String) {
         u[0] = u1
-        validateUI()
+        validateU()
     }
 
     override fun setU2(u1: String) {
         u[1] = u1
-        validateUI()
+        validateU()
     }
 
     override fun setU3(u1: String) {
         u[2] = u1
-        validateUI()
+        validateU()
     }
 
     override fun setU4(u1: String) {
         u[3] = u1
-        validateUI()
+        validateU()
     }
 
     override fun setU5(u1: String) {
         u[4] = u1
-        validateUI()
+        validateU()
     }
 
     override fun setU6(u1: String) {
         u[5] = u1
-        validateUI()
+        validateU()
     }
 
-    private fun validateUI() {
+    private fun validateU() {
         isUValidLiveData.value = u.all { it.isNotBlank() && it.isValidNumber() }
     }
 
