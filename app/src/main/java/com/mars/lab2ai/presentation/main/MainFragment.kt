@@ -1,10 +1,14 @@
 package com.mars.lab2ai.presentation.main
 
+import android.os.Bundle
+import android.view.View
 import androidx.core.view.isVisible
 import androidx.core.widget.doAfterTextChanged
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.mars.lab2ai.R
 import com.mars.lab2ai.databinding.FragmentMainBinding
 import com.mars.lab2ai.presentation.base.BaseFragment
+import com.mars.lab2ai.presentation.main.adapter.TableAdapter
 import com.mars.lab2ai.presentation.main.model.MainViewModel
 import com.zhuinden.fragmentviewbindingdelegatekt.viewBinding
 import org.koin.androidx.viewmodel.ext.android.viewModel
@@ -17,6 +21,11 @@ class MainFragment : BaseFragment(R.layout.fragment_main) {
 
     companion object {
         fun newInstance() = MainFragment()
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        initObservers()
     }
 
     override fun initViews() = with(binding) {
@@ -45,6 +54,13 @@ class MainFragment : BaseFragment(R.layout.fragment_main) {
 
         calculateButton.setOnClickListener { viewModel.calculate() }
 
+        tableRecyclerView.run {
+            layoutManager = LinearLayoutManager(context)
+            adapter = TableAdapter()
+        }
+    }
+
+    private fun initObservers() = with(binding) {
         viewModel.isUValidLiveData.observe(viewLifecycleOwner) { isConfirmEnabled ->
             confirmUButton.isEnabled = isConfirmEnabled
         }
@@ -60,5 +76,10 @@ class MainFragment : BaseFragment(R.layout.fragment_main) {
                 markCharacteristic5
             ).forEachIndexed { index, textView -> textView.text = texts[index] }
         }
+    }
+
+    //TODO Usee to set data
+    private fun setTableData(data: List<List<String>>) {
+        (binding.tableRecyclerView.adapter as? TableAdapter)?.setItems(data)
     }
 }
