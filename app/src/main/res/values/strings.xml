@@ -8,4 +8,7 @@
     <string name="u4">u4</string>
     <string name="u5">u5</string>
     <string name="u6">u6</string>
+    <string name="enter_saaty_marks">Enter Saaty marks</string>
+    <string name="confirm_input">Confirm input</string>
+    <string name="calculate_table">Calculate Table</string>
 </resources>
