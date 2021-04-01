@@ -72,6 +72,8 @@ sealed class CallResult<T> {
     }
 }
 
+infix fun <T> CallResult.Companion.successOf(value: T) = CallResult.Success(value)
+
 fun <T, U> CallResult<List<T>>.transformList(transformer: Transformer<T, U>) = transform {
     map { it.transformer() }
 }
