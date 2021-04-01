@@ -9,6 +9,7 @@ import com.mars.lab2ai.data.calculator.ValueCalculator
 import com.mars.lab2ai.data.calculator.models.CalculationParams
 import com.mars.lab2ai.data.calculator.models.CalculationResult
 import com.mars.lab2ai.data.text.TextProvider
+import com.mars.lab2ai.presentation.utils.SingleLiveEvent
 
 class MainViewModelImpl(
     private val textProvider: TextProvider,
@@ -28,9 +29,13 @@ class MainViewModelImpl(
 
     override val resultData = MutableLiveData<List<List<String>>?>(null)
 
+    override val openGraphData = SingleLiveEvent<HashMap<Float, Float>>()
+
     private val uArray: Array<String> = Array(6) { "" }
 
     private val markArray: Array<String> = Array(6) { "" }
+
+    private var lastResult: CalculationResult? = null
 
     init {
         validateU()
@@ -65,6 +70,7 @@ class MainViewModelImpl(
                     )
                 )
             } ?: return@launchOnComputation
+            lastResult = result
 
             val viewData = generateViewData(result)
 
@@ -72,6 +78,12 @@ class MainViewModelImpl(
                 resultData.value = viewData
             }
         }
+    }
+
+    override fun graph() {
+        val result = lastResult ?: return
+        val graphData = generateGraphData(result)
+        openGraphData.value = graphData
     }
 
     override fun reset() {
@@ -133,6 +145,14 @@ class MainViewModelImpl(
         }
 
         return data
+    }
+
+    private fun generateGraphData(result: CalculationResult): HashMap<Float, Float> {
+        return LinkedHashMap<Float, Float>().apply {
+            for (i in result.values.indices) {
+                this[result.values[i]] = result.normalizedTotals[i]
+            }
+        }
     }
 
     private fun CharSequence.isValidNumber(): Boolean {

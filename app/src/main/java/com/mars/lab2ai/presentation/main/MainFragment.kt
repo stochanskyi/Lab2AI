@@ -60,6 +60,8 @@ class MainFragment : BaseFragment(R.layout.fragment_main) {
             adapter = TableAdapter()
         }
 
+        graphButton.setOnClickListener { viewModel.graph() }
+
         resetButton.setOnClickListener {
             viewModel.reset()
         }
@@ -86,8 +88,13 @@ class MainFragment : BaseFragment(R.layout.fragment_main) {
         }
 
         viewModel.resultData.observe(viewLifecycleOwner) { result ->
-            marksLayout.isVisible = result != null
+            tableRecyclerView.isVisible = result != null
+            graphButton.isVisible = result != null
             (binding.tableRecyclerView.adapter as? TableAdapter)?.setItems(result ?: emptyList())
+        }
+
+        viewModel.openGraphData.observe(viewLifecycleOwner) { data ->
+            // TODO
         }
 
         viewModel.clearLiveData.observe(viewLifecycleOwner) { result ->

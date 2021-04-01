@@ -14,6 +14,8 @@ abstract class MainViewModel : BaseViewModel() {
 
     abstract val resultData: LiveData<List<List<String>>?>
 
+    abstract val openGraphData: LiveData<HashMap<Float, Float>>
+
     abstract fun setU(index: Int, u: String)
 
     abstract fun nextAfterInputU()
@@ -21,6 +23,8 @@ abstract class MainViewModel : BaseViewModel() {
     abstract fun setMark(index: Int, mark: String)
 
     abstract fun calculate()
+
+    abstract fun graph()
 
     abstract fun reset()
 
