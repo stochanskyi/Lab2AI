@@ -8,6 +8,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.mars.lab2ai.R
 import com.mars.lab2ai.databinding.FragmentMainBinding
 import com.mars.lab2ai.presentation.base.BaseFragment
+import com.mars.lab2ai.presentation.chart.ChartActivity
 import com.mars.lab2ai.presentation.main.adapter.TableAdapter
 import com.mars.lab2ai.presentation.main.model.MainViewModel
 import com.zhuinden.fragmentviewbindingdelegatekt.viewBinding
