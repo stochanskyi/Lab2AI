@@ -20,11 +20,11 @@ class MainFragment : BaseFragment(R.layout.fragment_main) {
 
     override fun initViews() {
         super.initViews()
-        binding.u1EditText.doAfterTextChanged { viewModel.setU1(it.toString()) }
-        binding.u2EditText.doAfterTextChanged { viewModel.setU2(it.toString()) }
-        binding.u3EditText.doAfterTextChanged { viewModel.setU3(it.toString()) }
-        binding.u4EditText.doAfterTextChanged { viewModel.setU4(it.toString()) }
-        binding.u5EditText.doAfterTextChanged { viewModel.setU5(it.toString()) }
+        binding.u1EditText.doAfterTextChanged { viewModel.setU(0, it.toString()) }
+        binding.u2EditText.doAfterTextChanged { viewModel.setU(1, it.toString()) }
+        binding.u3EditText.doAfterTextChanged { viewModel.setU(2, it.toString()) }
+        binding.u4EditText.doAfterTextChanged { viewModel.setU(3, it.toString()) }
+        binding.u5EditText.doAfterTextChanged { viewModel.setU(4, it.toString()) }
 
         viewModel.isUValidLiveData.observe(viewLifecycleOwner) { isConfirmEnabled ->
             binding.confirmUButton.isEnabled = isConfirmEnabled
