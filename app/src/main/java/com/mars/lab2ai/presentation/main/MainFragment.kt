@@ -76,10 +76,10 @@ class MainFragment : BaseFragment(R.layout.fragment_main) {
                 markCharacteristic5
             ).forEachIndexed { index, textView -> textView.text = texts[index] }
         }
+
+        viewModel.resultData.observe(viewLifecycleOwner) { viewData ->
+            (binding.tableRecyclerView.adapter as? TableAdapter)?.setItems(viewData)
+        }
     }
 
-    //TODO Usee to set data
-    private fun setTableData(data: List<List<String>>) {
-        (binding.tableRecyclerView.adapter as? TableAdapter)?.setItems(data)
-    }
 }

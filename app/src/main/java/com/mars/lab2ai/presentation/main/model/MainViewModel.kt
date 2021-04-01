@@ -10,6 +10,8 @@ abstract class MainViewModel : BaseViewModel() {
 
     abstract val markCharacteristicData: LiveData<List<String>?>
 
+    abstract val resultData: LiveData<List<List<String>>>
+
     abstract fun setU(index: Int, u: String)
 
     abstract fun nextAfterInputU()

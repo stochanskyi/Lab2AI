@@ -4,6 +4,7 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
 import com.mars.lab2ai.R
 import com.mars.lab2ai.app.common.launchOnComputation
+import com.mars.lab2ai.app.common.withMainContext
 import com.mars.lab2ai.data.calculator.ValueCalculator
 import com.mars.lab2ai.data.calculator.models.CalculationParams
 import com.mars.lab2ai.data.calculator.models.CalculationResult
@@ -22,6 +23,8 @@ class MainViewModelImpl(
     override val isMarksValidLiveData = MutableLiveData<Boolean>()
 
     override val markCharacteristicData = MutableLiveData<List<String>?>(null)
+
+    override val resultData = MutableLiveData<List<List<String>>>()
 
     private val uArray: Array<String> = Array(6) { "" }
 
@@ -56,7 +59,11 @@ class MainViewModelImpl(
                 )
             } ?: return@launchOnComputation
 
+            val viewData = generateViewData(result)
 
+            withMainContext {
+                resultData.value = viewData
+            }
         }
     }
 
@@ -76,7 +83,38 @@ class MainViewModelImpl(
     }
 
     private fun generateViewData(result: CalculationResult): List<List<String>> {
-        return emptyList()
+        val data =
+            MutableList(result.values.size + 3) { MutableList(result.values.size + 1) { "" } }
+
+        data[0][0] = textProvider.getText(R.string.table_title)
+        data[6][0] = "1"
+        data[7][0] = "2"
+        data[8][0] = "3"
+
+        result.values.map { it.toString() }.forEachIndexed { i, value ->
+            data[0][i + 1] = value
+            data[i + 1][0] = value
+        }
+
+        result.comparing.forEachIndexed { i, compare ->
+            for (j in result.comparing.indices) {
+                data[i + 1][j + 1] = compare.toString()
+            }
+        }
+
+        result.totals.forEachIndexed { index, total ->
+            data[6][index + 1] = total.toString()
+        }
+
+        result.converseTotals.forEachIndexed { index, total ->
+            data[7][index + 1] = total.toString()
+        }
+
+        result.normalizedTotals.forEachIndexed { index, total ->
+            data[8][index + 1] = total.toString()
+        }
+
+        return data
     }
 
     private fun CharSequence.isValidNumber(): Boolean {
