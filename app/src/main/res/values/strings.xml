@@ -1,6 +1,6 @@
 <resources>
     <string name="app_name">Lab2AI</string>
-    <string name="enter_values_title">Please enter elements values</string>
+    <string name="enter_values_title">Enter elements values</string>
     <string name="main_title">Lab 2 AI</string>
     <string name="u1">u1</string>
     <string name="u2">u2</string>

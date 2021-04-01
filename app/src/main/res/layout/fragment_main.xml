@@ -2,6 +2,7 @@
 <ScrollView
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
+    android:background="@color/black"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
@@ -20,15 +21,16 @@
             android:textAlignment="center"
             android:textSize="20sp"
             android:fontFamily="sans-serif-medium"
-            android:textColor="@color/black"
+            android:textColor="@color/white"
             android:text="@string/main_title" />
 
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="20dp"
-            android:textColor="@color/black"
+            android:textColor="@color/white"
             android:textSize="16sp"
+            android:textAlignment="center"
             android:text="@string/enter_values_title" />
 
         <LinearLayout
@@ -39,28 +41,35 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:textColor="@color/light_gray"
                 android:text="@string/u1" />
 
             <EditText
                 android:id="@+id/u_1_editText"
                 android:layout_width="100dp"
                 android:layout_height="wrap_content"
+                android:backgroundTint="@color/teal_200"
                 android:inputType="numberSigned" />
 
-            <Space
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:orientation="horizontal">
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:textColor="@color/light_gray"
                 android:text="@string/u2" />
 
             <EditText
                 android:id="@+id/u_2_editText"
                 android:layout_width="100dp"
                 android:layout_height="wrap_content"
+                android:backgroundTint="@color/teal_200"
                 android:inputType="numberSigned" />
 
         </LinearLayout>
@@ -74,12 +83,14 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:textColor="@color/light_gray"
                 android:text="@string/u3" />
 
             <EditText
                 android:id="@+id/u_3_editText"
                 android:layout_width="100dp"
                 android:inputType="numberSigned"
+                android:backgroundTint="@color/teal_200"
                 android:layout_height="wrap_content" />
 
             <Space
@@ -87,15 +98,26 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1" />
 
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:orientation="horizontal">
+
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:textColor="@color/light_gray"
                 android:text="@string/u4" />
 
             <EditText
                 android:id="@+id/u_4_editText"
                 android:layout_width="100dp"
                 android:inputType="numberSigned"
+                android:backgroundTint="@color/teal_200"
                 android:layout_height="wrap_content" />
 
         </LinearLayout>
@@ -109,12 +131,14 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:textColor="@color/light_gray"
                 android:text="@string/u5" />
 
             <EditText
                 android:id="@+id/u_5_editText"
                 android:layout_width="100dp"
                 android:inputType="numberSigned"
+                android:backgroundTint="@color/teal_200"
                 android:layout_height="wrap_content" />
 
             <Space
@@ -122,64 +146,74 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1" />
 
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:orientation="horizontal">
+
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:textColor="@color/light_gray"
                 android:text="@string/u6" />
 
             <EditText
                 android:id="@+id/u_6_editText"
                 android:layout_width="100dp"
                 android:inputType="numberSigned"
+                android:backgroundTint="@color/teal_200"
                 android:layout_height="wrap_content" />
+
 
         </LinearLayout>
 
-        <Button
-            android:id="@+id/confirm_u_button"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="30dp"
-            android:layout_gravity="center_horizontal"
-            android:textAllCaps="false"
-            android:text="@string/confirm_input" />
+            <Button
+                android:id="@+id/confirm_u_button"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="30dp"
+                android:layout_gravity="center_horizontal"
+                android:textAllCaps="false"
+                android:text="@string/confirm_input" />
 
         <LinearLayout
             android:id="@+id/marks_layout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:visibility="gone"
             android:orientation="vertical">
 
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="20dp"
-                android:textColor="@color/black"
+                android:textColor="@color/white"
                 android:textSize="16sp"
+                android:textAlignment="center"
                 android:text="@string/enter_saaty_marks" />
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
-                android:orientation="horizontal">
+                android:orientation="vertical">
 
                 <TextView
                     android:id="@+id/mark_characteristic_1"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:textColor="@color/white"
                     tools:text="Test" />
-
-                <Space
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1" />
 
                 <EditText
                     android:id="@+id/mark_1_editText"
-                    android:layout_width="70dp"
-                    android:layout_height="wrap_content" />
+                    android:layout_width="200dp"
+                    android:layout_height="wrap_content"
+                    android:backgroundTint="@color/teal_200"
+                    android:layout_gravity="center"/>
 
             </LinearLayout>
 
@@ -193,6 +227,7 @@
                     android:id="@+id/mark_characteristic_2"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:textColor="@color/white"
                     tools:text="Test" />
 
                 <Space
@@ -217,6 +252,7 @@
                     android:id="@+id/mark_characteristic_3"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:textColor="@color/white"
                     tools:text="Test" />
 
                 <Space
@@ -241,6 +277,7 @@
                     android:id="@+id/mark_characteristic_4"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:textColor="@color/white"
                     tools:text="Test" />
 
                 <Space
@@ -265,6 +302,7 @@
                     android:id="@+id/mark_characteristic_5"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:textColor="@color/white"
                     tools:text="Test" />
 
                 <Space
