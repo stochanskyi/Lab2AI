@@ -1,8 +1,12 @@
 package com.mars.lab2ai.presentation.main.model
 
 import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.viewModelScope
 import com.mars.lab2ai.R
+import com.mars.lab2ai.app.common.launchOnComputation
 import com.mars.lab2ai.data.calculator.ValueCalculator
+import com.mars.lab2ai.data.calculator.models.CalculationParams
+import com.mars.lab2ai.data.calculator.models.CalculationResult
 import com.mars.lab2ai.data.text.TextProvider
 
 class MainViewModelImpl(
@@ -14,11 +18,14 @@ class MainViewModelImpl(
         private const val DOT = '.'
     }
 
-    override val isUValidLiveData: MutableLiveData<Boolean> = MutableLiveData(false)
+    override val isUValidLiveData = MutableLiveData<Boolean>()
+    override val isMarksValidLiveData = MutableLiveData<Boolean>()
 
-    override val markCharacteristicData = MutableLiveData<List<String>>()
+    override val markCharacteristicData = MutableLiveData<List<String>?>(null)
 
     private val uArray: Array<String> = Array(6) { "" }
+
+    private val markArray: Array<String> = Array(5) { "" }
 
     override fun setU(index: Int, u: String) {
         uArray[index] = u
@@ -31,8 +38,34 @@ class MainViewModelImpl(
         markCharacteristicData.value = generateCharacteristicData()
     }
 
+    override fun setMark(index: Int, mark: String) {
+        markArray[index] = mark
+        validateMarks()
+    }
+
+    override fun calculate() {
+        validateMarks()
+        if (isMarksValidLiveData.value != true) return
+        viewModelScope.launchOnComputation {
+            val result = safeCall {
+                calculator.calculate(
+                    CalculationParams(
+                        uArray.map { it.toFloat() }.toFloatArray(),
+                        markArray.map { it.toFloat() }.toFloatArray()
+                    )
+                )
+            } ?: return@launchOnComputation
+
+
+        }
+    }
+
     private fun validateU() {
-        isUValidLiveData.value = uArray.all { it.isNotBlank() && it.isValidNumber() }
+        isUValidLiveData.value = uArray.all { it.isValidNumber() }
+    }
+
+    private fun validateMarks() {
+        isMarksValidLiveData.value = markArray.all { it.isValidNumber() }
     }
 
     private fun generateCharacteristicData(): List<String> {
@@ -42,7 +75,13 @@ class MainViewModelImpl(
         }
     }
 
+    private fun generateViewData(result: CalculationResult): List<List<String>> {
+        return emptyList()
+    }
+
     private fun CharSequence.isValidNumber(): Boolean {
+        if (isEmpty()) return false
+
         var hadComma = false
         var isCommaLast = false
         val result = all {
