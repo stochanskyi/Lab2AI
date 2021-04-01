@@ -59,11 +59,18 @@ class MainFragment : BaseFragment(R.layout.fragment_main) {
             layoutManager = LinearLayoutManager(context)
             adapter = TableAdapter()
         }
+
+        resetButton.setOnClickListener {
+            viewModel.reset()
+        }
     }
 
     private fun initObservers() = with(binding) {
         viewModel.isUValidLiveData.observe(viewLifecycleOwner) { isConfirmEnabled ->
             confirmUButton.isEnabled = isConfirmEnabled
+        }
+        viewModel.isMarksValidLiveData.observe(viewLifecycleOwner) { isConfirmEnabled ->
+            calculateButton.isEnabled = isConfirmEnabled
         }
 
         viewModel.markCharacteristicData.observe(viewLifecycleOwner) { texts ->
@@ -78,8 +85,26 @@ class MainFragment : BaseFragment(R.layout.fragment_main) {
             ).forEachIndexed { index, textView -> textView.text = texts[index] }
         }
 
-        viewModel.resultData.observe(viewLifecycleOwner) { viewData ->
-            (binding.tableRecyclerView.adapter as? TableAdapter)?.setItems(viewData)
+        viewModel.resultData.observe(viewLifecycleOwner) { result ->
+            marksLayout.isVisible = result != null
+            (binding.tableRecyclerView.adapter as? TableAdapter)?.setItems(result ?: emptyList())
+        }
+
+        viewModel.clearLiveData.observe(viewLifecycleOwner) { result ->
+            if (!result) return@observe
+            listOf(
+                u1EditText,
+                u2EditText,
+                u3EditText,
+                u4EditText,
+                u5EditText,
+                u6EditText,
+                mark1EditText,
+                mark2EditText,
+                mark3EditText,
+                mark4EditText,
+                mark5EditText
+            ).forEach { it.setText("") }
         }
     }
 

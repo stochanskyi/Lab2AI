@@ -8,9 +8,11 @@ abstract class MainViewModel : BaseViewModel() {
     abstract val isUValidLiveData: LiveData<Boolean>
     abstract val isMarksValidLiveData: LiveData<Boolean>
 
+    abstract val clearLiveData: LiveData<Boolean>
+
     abstract val markCharacteristicData: LiveData<List<String>?>
 
-    abstract val resultData: LiveData<List<List<String>>>
+    abstract val resultData: LiveData<List<List<String>>?>
 
     abstract fun setU(index: Int, u: String)
 
@@ -19,5 +21,7 @@ abstract class MainViewModel : BaseViewModel() {
     abstract fun setMark(index: Int, mark: String)
 
     abstract fun calculate()
+
+    abstract fun reset()
 
 }

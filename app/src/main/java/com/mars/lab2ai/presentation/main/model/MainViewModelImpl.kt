@@ -22,9 +22,11 @@ class MainViewModelImpl(
     override val isUValidLiveData = MutableLiveData<Boolean>()
     override val isMarksValidLiveData = MutableLiveData<Boolean>()
 
+    override val clearLiveData = MutableLiveData<Boolean>()
+
     override val markCharacteristicData = MutableLiveData<List<String>?>(null)
 
-    override val resultData = MutableLiveData<List<List<String>>>()
+    override val resultData = MutableLiveData<List<List<String>>?>(null)
 
     private val uArray: Array<String> = Array(6) { "" }
 
@@ -70,6 +72,16 @@ class MainViewModelImpl(
                 resultData.value = viewData
             }
         }
+    }
+
+    override fun reset() {
+        isUValidLiveData.value = false
+        isMarksValidLiveData.value = false
+        markCharacteristicData.value = null
+        resultData.value = null
+
+        clearLiveData.value = true
+        clearLiveData.value = false
     }
 
     private fun validateU() {

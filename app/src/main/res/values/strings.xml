@@ -13,4 +13,5 @@
     <string name="calculate_table">Calculate Table</string>
     <string name="advantage">Advantage %1$s of %2$s</string>
     <string name="table_title">Table title</string>
+    <string name="reset">Reset</string>
 </resources>
