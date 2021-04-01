@@ -28,7 +28,12 @@ class MainViewModelImpl(
 
     private val uArray: Array<String> = Array(6) { "" }
 
-    private val markArray: Array<String> = Array(5) { "" }
+    private val markArray: Array<String> = Array(6) { "" }
+
+    init {
+        validateU()
+        validateMarks()
+    }
 
     override fun setU(index: Int, u: String) {
         uArray[index] = u
@@ -72,6 +77,7 @@ class MainViewModelImpl(
     }
 
     private fun validateMarks() {
+        markArray[5] = markArray[4]
         isMarksValidLiveData.value = markArray.all { it.isValidNumber() }
     }
 
