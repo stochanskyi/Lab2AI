@@ -97,27 +97,27 @@ class MainViewModelImpl(
         data[7][0] = "2"
         data[8][0] = "3"
 
-        result.values.map { it.toString() }.forEachIndexed { i, value ->
+        result.values.map { it.f() }.forEachIndexed { i, value ->
             data[0][i + 1] = value
             data[i + 1][0] = value
         }
 
         result.comparing.forEachIndexed { i, compare ->
-            for (j in result.comparing.indices) {
-                data[i + 1][j + 1] = compare.toString()
+            for (j in compare.indices) {
+                data[i + 1][j + 1] = compare[j].f()
             }
         }
 
         result.totals.forEachIndexed { index, total ->
-            data[6][index + 1] = total.toString()
+            data[6][index + 1] = total.f()
         }
 
         result.converseTotals.forEachIndexed { index, total ->
-            data[7][index + 1] = total.toString()
+            data[7][index + 1] = total.f()
         }
 
         result.normalizedTotals.forEachIndexed { index, total ->
-            data[8][index + 1] = total.toString()
+            data[8][index + 1] = total.f()
         }
 
         return data
@@ -149,3 +149,5 @@ class MainViewModelImpl(
         return result
     }
 }
+
+private fun Float.f() = String.format("%.2f", this)
