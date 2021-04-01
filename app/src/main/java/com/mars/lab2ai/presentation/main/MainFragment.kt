@@ -35,7 +35,8 @@ class MainFragment : BaseFragment(R.layout.fragment_main) {
             u2EditText,
             u3EditText,
             u4EditText,
-            u5EditText
+            u5EditText,
+            u6EditText
         ).forEachIndexed { index, editText ->
             editText.doAfterTextChanged { viewModel.setU(index, it.toString()) }
         }
