@@ -19,8 +19,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:textAlignment="center"
-            android:textSize="20sp"
-            android:fontFamily="sans-serif-medium"
+            android:textSize="30sp"
+            android:textStyle="bold"
             android:textColor="@color/white"
             android:text="@string/main_title" />
 
@@ -29,14 +29,15 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="20dp"
             android:textColor="@color/white"
-            android:textSize="16sp"
-            android:textAlignment="center"
+            android:fontFamily="sans-serif-medium"
+            android:textSize="24sp"
             android:text="@string/enter_values_title" />
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal">
+            android:orientation="horizontal"
+            android:gravity="center_horizontal">
 
             <TextView
                 android:layout_width="wrap_content"
@@ -49,6 +50,7 @@
                 android:layout_width="100dp"
                 android:layout_height="wrap_content"
                 android:backgroundTint="@color/teal_200"
+                android:textColor="@color/white"
                 android:inputType="numberSigned" />
 
         </LinearLayout>
@@ -57,7 +59,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="20dp"
-            android:orientation="horizontal">
+            android:orientation="horizontal"
+            android:gravity="center_horizontal">
 
             <TextView
                 android:layout_width="wrap_content"
@@ -70,6 +73,7 @@
                 android:layout_width="100dp"
                 android:layout_height="wrap_content"
                 android:backgroundTint="@color/teal_200"
+                android:textColor="@color/white"
                 android:inputType="numberSigned" />
 
         </LinearLayout>
@@ -78,7 +82,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="20dp"
-            android:orientation="horizontal">
+            android:orientation="horizontal"
+            android:gravity="center_horizontal">
 
             <TextView
                 android:layout_width="wrap_content"
@@ -91,12 +96,8 @@
                 android:layout_width="100dp"
                 android:inputType="numberSigned"
                 android:backgroundTint="@color/teal_200"
+                android:textColor="@color/white"
                 android:layout_height="wrap_content" />
-
-            <Space
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1" />
 
 
         </LinearLayout>
@@ -105,7 +106,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="20dp"
-            android:orientation="horizontal">
+            android:orientation="horizontal"
+            android:gravity="center_horizontal">
 
             <TextView
                 android:layout_width="wrap_content"
@@ -118,6 +120,7 @@
                 android:layout_width="100dp"
                 android:inputType="numberSigned"
                 android:backgroundTint="@color/teal_200"
+                android:textColor="@color/white"
                 android:layout_height="wrap_content" />
 
         </LinearLayout>
@@ -126,7 +129,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="20dp"
-            android:orientation="horizontal">
+            android:orientation="horizontal"
+            android:gravity="center_horizontal">
 
             <TextView
                 android:layout_width="wrap_content"
@@ -139,13 +143,8 @@
                 android:layout_width="100dp"
                 android:inputType="numberSigned"
                 android:backgroundTint="@color/teal_200"
+                android:textColor="@color/white"
                 android:layout_height="wrap_content" />
-
-            <Space
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1" />
-
 
         </LinearLayout>
 
@@ -153,7 +152,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="20dp"
-            android:orientation="horizontal">
+            android:orientation="horizontal"
+            android:gravity="center_horizontal">
 
             <TextView
                 android:layout_width="wrap_content"
@@ -166,6 +166,7 @@
                 android:layout_width="100dp"
                 android:inputType="numberSigned"
                 android:backgroundTint="@color/teal_200"
+                android:textColor="@color/white"
                 android:layout_height="wrap_content" />
 
 
@@ -178,7 +179,7 @@
                 android:layout_marginTop="30dp"
                 android:layout_gravity="center_horizontal"
                 android:textAllCaps="false"
-                android:text="@string/confirm_input" />
+                android:text="@string/next" />
 
         <LinearLayout
             android:id="@+id/marks_layout"
@@ -191,15 +192,16 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="20dp"
                 android:textColor="@color/white"
-                android:textSize="16sp"
-                android:textAlignment="center"
+                android:fontFamily="sans-serif-medium"
+                android:textSize="24sp"
                 android:text="@string/enter_saaty_marks" />
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
-                android:orientation="vertical">
+                android:orientation="horizontal"
+                android:gravity="center">
 
                 <TextView
                     android:id="@+id/mark_characteristic_1"
@@ -213,15 +215,18 @@
                     android:layout_width="200dp"
                     android:layout_height="wrap_content"
                     android:backgroundTint="@color/teal_200"
+                    android:textColor="@color/white"
                     android:layout_gravity="center"/>
 
             </LinearLayout>
+
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
-                android:orientation="horizontal">
+                android:orientation="horizontal"
+                android:gravity="center">
 
                 <TextView
                     android:id="@+id/mark_characteristic_2"
@@ -230,23 +235,23 @@
                     android:textColor="@color/white"
                     tools:text="Test" />
 
-                <Space
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1" />
-
                 <EditText
                     android:id="@+id/mark_2_editText"
-                    android:layout_width="70dp"
-                    android:layout_height="wrap_content" />
+                    android:layout_width="200dp"
+                    android:layout_height="wrap_content"
+                    android:backgroundTint="@color/teal_200"
+                    android:textColor="@color/white"
+                    android:layout_gravity="center"/>
 
             </LinearLayout>
+
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
-                android:orientation="horizontal">
+                android:orientation="horizontal"
+                android:gravity="center">
 
                 <TextView
                     android:id="@+id/mark_characteristic_3"
@@ -255,23 +260,23 @@
                     android:textColor="@color/white"
                     tools:text="Test" />
 
-                <Space
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1" />
-
                 <EditText
                     android:id="@+id/mark_3_editText"
-                    android:layout_width="70dp"
-                    android:layout_height="wrap_content" />
+                    android:layout_width="200dp"
+                    android:layout_height="wrap_content"
+                    android:backgroundTint="@color/teal_200"
+                    android:textColor="@color/white"
+                    android:layout_gravity="center"/>
 
             </LinearLayout>
+
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
-                android:orientation="horizontal">
+                android:orientation="horizontal"
+                android:gravity="center">
 
                 <TextView
                     android:id="@+id/mark_characteristic_4"
@@ -280,23 +285,23 @@
                     android:textColor="@color/white"
                     tools:text="Test" />
 
-                <Space
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1" />
-
                 <EditText
                     android:id="@+id/mark_4_editText"
-                    android:layout_width="70dp"
-                    android:layout_height="wrap_content" />
+                    android:layout_width="200dp"
+                    android:layout_height="wrap_content"
+                    android:backgroundTint="@color/teal_200"
+                    android:textColor="@color/white"
+                    android:layout_gravity="center"/>
 
             </LinearLayout>
+
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
-                android:orientation="horizontal">
+                android:orientation="horizontal"
+                android:gravity="center">
 
                 <TextView
                     android:id="@+id/mark_characteristic_5"
@@ -305,15 +310,13 @@
                     android:textColor="@color/white"
                     tools:text="Test" />
 
-                <Space
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1" />
-
                 <EditText
                     android:id="@+id/mark_5_editText"
-                    android:layout_width="70dp"
-                    android:layout_height="wrap_content" />
+                    android:layout_width="200dp"
+                    android:layout_height="wrap_content"
+                    android:backgroundTint="@color/teal_200"
+                    android:textColor="@color/white"
+                    android:layout_gravity="center"/>
 
             </LinearLayout>
 

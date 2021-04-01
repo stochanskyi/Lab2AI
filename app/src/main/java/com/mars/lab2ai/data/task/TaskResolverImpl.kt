@@ -1,13 +1,13 @@
-package com.mars.lab2ai.data.calculator
+package com.mars.lab2ai.data.task
 
-import com.mars.lab2ai.data.calculator.models.CalculationParams
-import com.mars.lab2ai.data.calculator.models.CalculationResult
-import com.mars.lab2ai.data.common.CallResult
+import com.mars.lab2ai.data.task.models.TaskParams
+import com.mars.lab2ai.data.task.models.TaskResult
+import com.mars.lab2ai.data.common.FuncReturn
 import com.mars.lab2ai.data.common.successOf
 
-class ValueCalculatorImpl: ValueCalculator {
+class TaskResolverImpl: TaskResolver {
 
-    override suspend fun calculate(params: CalculationParams): CallResult<CalculationResult> {
+    override suspend fun calculate(params: TaskParams): FuncReturn<TaskResult> {
         val size = params.values.size
         val comparing = Array(size) { FloatArray(size) { 0f } }
 
@@ -35,7 +35,7 @@ class ValueCalculatorImpl: ValueCalculator {
             normalizedTotals[i] = converseTotals[i] / maxConverseTotal
         }
 
-        return CallResult successOf CalculationResult(
+        return FuncReturn successOf TaskResult(
             params.values,
             comparing,
             totals,

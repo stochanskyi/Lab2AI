@@ -4,13 +4,13 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.mars.lab2ai.app.common.takeIfNotEmpty
 import com.mars.lab2ai.app.common.withMainContext
-import com.mars.lab2ai.data.common.CallResult
+import com.mars.lab2ai.data.common.FuncReturn
 
 abstract class BaseViewModel : ViewModel(), BaseViewModelContract {
 
     override val errorData = MutableLiveData<String>()
 
-    protected suspend fun <T> safeCall(action: suspend () -> CallResult<T>): T? {
+    protected suspend fun <T> safeCall(action: suspend () -> FuncReturn<T>): T? {
         return try {
             val result = action()
             processRequestResult(result)
@@ -25,8 +25,8 @@ abstract class BaseViewModel : ViewModel(), BaseViewModelContract {
         }
     }
 
-    protected open suspend fun <T> processRequestResult(result: CallResult<T>): T? {
-        if (result is CallResult.Error) {
+    protected open suspend fun <T> processRequestResult(result: FuncReturn<T>): T? {
+        if (result is FuncReturn.Error) {
             val isErrorHandled = withMainContext {
                 handleCallResultError(result)
             }
@@ -35,14 +35,14 @@ abstract class BaseViewModel : ViewModel(), BaseViewModelContract {
             return null
         }
 
-        return (result as CallResult.Success<T>).data
+        return (result as FuncReturn.Success<T>).data
     }
 
     protected fun handleSafeCallError(): Boolean {
         return false
     }
 
-    protected fun <T> handleCallResultError(error: CallResult.Error<T>): Boolean {
+    protected fun <T> handleCallResultError(error: FuncReturn.Error<T>): Boolean {
         when (error.errorType) {
             else -> return false
         }

@@ -11,7 +11,7 @@
         android:layout_height="wrap_content"
         android:layout_weight="3"
         android:textAlignment="center"
-        android:textColor="@color/white"
+        android:textColor="@color/black"
         android:textSize="12sp"
         android:background="@drawable/bg_table_header_cell"
         tools:text="Test" />
@@ -22,7 +22,7 @@
         android:layout_height="wrap_content"
         android:layout_weight="2"
         android:textAlignment="center"
-        android:textColor="@color/white"
+        android:textColor="@color/black"
         android:textSize="12sp"
         android:background="@drawable/bg_table_header_cell"
         tools:text="Test" />
@@ -33,7 +33,7 @@
         android:layout_height="wrap_content"
         android:layout_weight="2"
         android:textAlignment="center"
-        android:textColor="@color/white"
+        android:textColor="@color/black"
         android:textSize="12sp"
         android:background="@drawable/bg_table_header_cell"
         tools:text="Test" />
@@ -44,7 +44,7 @@
         android:layout_height="wrap_content"
         android:layout_weight="2"
         android:textAlignment="center"
-        android:textColor="@color/white"
+        android:textColor="@color/black"
         android:textSize="12sp"
         android:background="@drawable/bg_table_header_cell"
         tools:text="Test" />
@@ -54,7 +54,7 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_weight="2"
-        android:textColor="@color/white"
+        android:textColor="@color/black"
         android:textSize="12sp"
         android:textAlignment="center"
         android:background="@drawable/bg_table_header_cell"
@@ -65,7 +65,7 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_weight="2"
-        android:textColor="@color/white"
+        android:textColor="@color/black"
         android:textSize="12sp"
         android:background="@drawable/bg_table_header_cell"
         tools:text="Test" />
@@ -75,7 +75,7 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_weight="2"
-        android:textColor="@color/white"
+        android:textColor="@color/black"
         android:textSize="12sp"
         android:textAlignment="center"
         android:background="@drawable/bg_table_header_cell"

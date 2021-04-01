@@ -1,18 +1,18 @@
 <resources>
-    <string name="app_name">Lab2AI</string>
+    <string name="app_name">AI Lab 2</string>
     <string name="enter_values_title">Enter elements values</string>
-    <string name="main_title">Lab 2 AI</string>
+    <string name="main_title">AI Lab 2</string>
     <string name="u1">u1</string>
     <string name="u2">u2</string>
     <string name="u3">u3</string>
     <string name="u4">u4</string>
     <string name="u5">u5</string>
     <string name="u6">u6</string>
-    <string name="enter_saaty_marks">Enter Saaty marks</string>
-    <string name="confirm_input">Confirm input</string>
-    <string name="calculate_table">Calculate Table</string>
-    <string name="advantage">Advantage %1$s of %2$s</string>
-    <string name="table_title">Table title</string>
-    <string name="reset">Reset</string>
+    <string name="enter_saaty_marks">Marks</string>
+    <string name="calculate_table">Table</string>
+    <string name="advantage">-> %1$s of %2$s</string>
+    <string name="table_title">Weights</string>
+    <string name="reset">Restart</string>
     <string name="graph">Graph</string>
+    <string name="next">Next</string>
 </resources>

@@ -5,15 +5,15 @@ import androidx.lifecycle.viewModelScope
 import com.mars.lab2ai.R
 import com.mars.lab2ai.app.common.launchOnComputation
 import com.mars.lab2ai.app.common.withMainContext
-import com.mars.lab2ai.data.calculator.ValueCalculator
-import com.mars.lab2ai.data.calculator.models.CalculationParams
-import com.mars.lab2ai.data.calculator.models.CalculationResult
+import com.mars.lab2ai.data.task.TaskResolver
+import com.mars.lab2ai.data.task.models.TaskParams
+import com.mars.lab2ai.data.task.models.TaskResult
 import com.mars.lab2ai.data.text.TextProvider
 import com.mars.lab2ai.presentation.utils.SingleLiveEvent
 
 class MainViewModelImpl(
     private val textProvider: TextProvider,
-    private val calculator: ValueCalculator
+    private val calculator: TaskResolver
 ) : MainViewModel() {
 
     companion object {
@@ -35,7 +35,7 @@ class MainViewModelImpl(
 
     private val markArray: Array<String> = Array(6) { "" }
 
-    private var lastResult: CalculationResult? = null
+    private var lastResult: TaskResult? = null
 
     init {
         validateU()
@@ -64,7 +64,7 @@ class MainViewModelImpl(
         viewModelScope.launchOnComputation {
             val result = safeCall {
                 calculator.calculate(
-                    CalculationParams(
+                    TaskParams(
                         uArray.map { it.toFloat() }.toFloatArray(),
                         markArray.map { it.toFloat() }.toFloatArray()
                     )
@@ -112,7 +112,7 @@ class MainViewModelImpl(
         }
     }
 
-    private fun generateViewData(result: CalculationResult): List<List<String>> {
+    private fun generateViewData(result: TaskResult): List<List<String>> {
         val data =
             MutableList(result.values.size + 4) { MutableList(result.values.size + 1) { "" } }
 
@@ -147,7 +147,7 @@ class MainViewModelImpl(
         return data
     }
 
-    private fun generateGraphData(result: CalculationResult): HashMap<Float, Float> {
+    private fun generateGraphData(result: TaskResult): HashMap<Float, Float> {
         return LinkedHashMap<Float, Float>().apply {
             for (i in result.values.indices) {
                 this[result.values[i]] = result.normalizedTotals[i]

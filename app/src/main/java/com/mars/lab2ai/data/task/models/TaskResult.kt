@@ -1,6 +1,6 @@
-package com.mars.lab2ai.data.calculator.models
+package com.mars.lab2ai.data.task.models
 
-class CalculationResult(
+class TaskResult(
     val values: FloatArray,
     val comparing: Array<FloatArray>,
     val totals: FloatArray,

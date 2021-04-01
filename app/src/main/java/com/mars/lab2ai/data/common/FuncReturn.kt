@@ -1,33 +1,33 @@
 package com.mars.lab2ai.data.common
 
-typealias CallResultList<T> = CallResult<List<T>>
-typealias CallResultNothing = CallResult<Unit>
+typealias CallResultList<T> = FuncReturn<List<T>>
+typealias CallResultNothing = FuncReturn<Unit>
 
 private typealias Transformer<T, U> = T.() -> U
-private typealias InlineTransformer<T, U> = T.() -> CallResult<U>
+private typealias InlineTransformer<T, U> = T.() -> FuncReturn<U>
 
-sealed class CallResult<T> {
+sealed class FuncReturn<T> {
 
-    class Success<T>(val data: T) : CallResult<T>()
+    class Success<T>(val data: T) : FuncReturn<T>()
 
     open class Error<T>(
         val errorType: String? = null,
         val message: String
-    ) : CallResult<T>() {
+    ) : FuncReturn<T>() {
 
         constructor(message: String) : this(null, message)
     }
 
     class UnknownError<T> : Error<T>("")
 
-    fun <U> transform(transformer: Transformer<T, U>): CallResult<U> {
+    fun <U> transform(transformer: Transformer<T, U>): FuncReturn<U> {
         return when (this) {
             is Success -> Success(transformer(data))
             is Error -> Error(errorType, message)
         }
     }
 
-    fun <U> transformInline(transformer: InlineTransformer<T, U>): CallResult<U> {
+    fun <U> transformInline(transformer: InlineTransformer<T, U>): FuncReturn<U> {
         return when (this) {
             is Success -> transformer(data)
             is Error -> Error(errorType, message)
@@ -56,9 +56,9 @@ sealed class CallResult<T> {
     companion object {
         suspend fun <T> anySuccess(
             specificError: Error<T>.() -> Boolean,
-            noSuccess: () -> CallResult<T>,
-            vararg sources: suspend () -> CallResult<T>,
-        ): CallResult<T> {
+            noSuccess: () -> FuncReturn<T>,
+            vararg sources: suspend () -> FuncReturn<T>,
+        ): FuncReturn<T> {
             sources.forEach {
                 when (val callResult = it()) {
                     is Success<*> -> return callResult
@@ -72,8 +72,8 @@ sealed class CallResult<T> {
     }
 }
 
-infix fun <T> CallResult.Companion.successOf(value: T) = CallResult.Success(value)
+infix fun <T> FuncReturn.Companion.successOf(value: T) = FuncReturn.Success(value)
 
-fun <T, U> CallResult<List<T>>.transformList(transformer: Transformer<T, U>) = transform {
+fun <T, U> FuncReturn<List<T>>.transformList(transformer: Transformer<T, U>) = transform {
     map { it.transformer() }
 }
