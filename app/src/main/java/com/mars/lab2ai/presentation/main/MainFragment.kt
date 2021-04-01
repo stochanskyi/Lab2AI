@@ -4,8 +4,8 @@ import androidx.core.widget.doAfterTextChanged
 import com.mars.lab2ai.R
 import com.mars.lab2ai.databinding.FragmentMainBinding
 import com.mars.lab2ai.presentation.base.BaseFragment
+import com.mars.lab2ai.presentation.main.model.MainViewModel
 import com.zhuinden.fragmentviewbindingdelegatekt.viewBinding
-import org.koin.android.ext.android.bind
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class MainFragment : BaseFragment(R.layout.fragment_main) {
