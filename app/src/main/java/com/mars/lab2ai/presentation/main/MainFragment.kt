@@ -1,5 +1,6 @@
 package com.mars.lab2ai.presentation.main
 
+import androidx.core.view.isVisible
 import androidx.core.widget.doAfterTextChanged
 import com.mars.lab2ai.R
 import com.mars.lab2ai.databinding.FragmentMainBinding
@@ -18,16 +19,46 @@ class MainFragment : BaseFragment(R.layout.fragment_main) {
         fun newInstance() = MainFragment()
     }
 
-    override fun initViews() {
+    override fun initViews() = with(binding) {
         super.initViews()
-        binding.u1EditText.doAfterTextChanged { viewModel.setU(0, it.toString()) }
-        binding.u2EditText.doAfterTextChanged { viewModel.setU(1, it.toString()) }
-        binding.u3EditText.doAfterTextChanged { viewModel.setU(2, it.toString()) }
-        binding.u4EditText.doAfterTextChanged { viewModel.setU(3, it.toString()) }
-        binding.u5EditText.doAfterTextChanged { viewModel.setU(4, it.toString()) }
+        listOf(
+            u1EditText,
+            u2EditText,
+            u3EditText,
+            u4EditText,
+            u5EditText
+        ).forEachIndexed { index, editText ->
+            editText.doAfterTextChanged { viewModel.setU(index, it.toString()) }
+        }
+
+        confirmUButton.setOnClickListener { viewModel.nextAfterInputU() }
+
+        listOf(
+            mark1EditText,
+            mark2EditText,
+            mark3EditText,
+            mark4EditText,
+            mark5EditText,
+        ).forEachIndexed { index, editText ->
+            editText.doAfterTextChanged { viewModel.setMark(index, it.toString()) }
+        }
+
+        calculateButton.setOnClickListener { viewModel.calculate() }
 
         viewModel.isUValidLiveData.observe(viewLifecycleOwner) { isConfirmEnabled ->
-            binding.confirmUButton.isEnabled = isConfirmEnabled
+            confirmUButton.isEnabled = isConfirmEnabled
+        }
+
+        viewModel.markCharacteristicData.observe(viewLifecycleOwner) { texts ->
+            marksLayout.isVisible = texts != null
+            if (texts == null) return@observe
+            listOf(
+                markCharacteristic1,
+                markCharacteristic2,
+                markCharacteristic3,
+                markCharacteristic4,
+                markCharacteristic5
+            ).forEachIndexed { index, textView -> textView.text = texts[index] }
         }
     }
 }
