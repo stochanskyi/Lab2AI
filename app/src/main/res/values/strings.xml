@@ -11,4 +11,5 @@
     <string name="enter_saaty_marks">Enter Saaty marks</string>
     <string name="confirm_input">Confirm input</string>
     <string name="calculate_table">Calculate Table</string>
+    <string name="advantage">Advantage $1%s of $2%s</string>
 </resources>
