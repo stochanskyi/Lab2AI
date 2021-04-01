@@ -90,12 +90,12 @@ class MainViewModelImpl(
 
     private fun generateViewData(result: CalculationResult): List<List<String>> {
         val data =
-            MutableList(result.values.size + 3) { MutableList(result.values.size + 1) { "" } }
+            MutableList(result.values.size + 4) { MutableList(result.values.size + 1) { "" } }
 
         data[0][0] = textProvider.getText(R.string.table_title)
-        data[6][0] = "1"
-        data[7][0] = "2"
-        data[8][0] = "3"
+        data[7][0] = "1"
+        data[8][0] = "2"
+        data[9][0] = "mx"
 
         result.values.map { it.f() }.forEachIndexed { i, value ->
             data[0][i + 1] = value
@@ -109,15 +109,15 @@ class MainViewModelImpl(
         }
 
         result.totals.forEachIndexed { index, total ->
-            data[6][index + 1] = total.f()
-        }
-
-        result.converseTotals.forEachIndexed { index, total ->
             data[7][index + 1] = total.f()
         }
 
-        result.normalizedTotals.forEachIndexed { index, total ->
+        result.converseTotals.forEachIndexed { index, total ->
             data[8][index + 1] = total.f()
+        }
+
+        result.normalizedTotals.forEachIndexed { index, total ->
+            data[9][index + 1] = total.f()
         }
 
         return data
